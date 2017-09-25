@@ -1,0 +1,41 @@
+parameters:
+    git_dir: .
+    bin_dir: bin
+    hide_circumvention_tip: true
+    process_timeout: 300
+    tasks:
+        git_blacklist:
+            keywords:
+                - "die("
+                - "var_dump("
+                - "exit;"
+                - "console.log("
+                - "{f:debug"
+                - "<f:debug"
+                
+        git_commit_message:
+            allow_empty_message: false
+            enforce_no_subject_trailing_period: true
+            enforce_single_lined_subject: true
+            max_body_width: 72
+            max_subject_width: 60
+            matchers:
+                "Must start with one or multiple tags such as [FEATURE]": "/(\\[!!!\\])?(\\[(FEATURE|BUGFIX|TASK|CLEANUP|SECURITY)\\]) .+$/"
+                "Must contain a 'Resolves: (JIRA issue)' or 'Fixes: (JIRA issue)' line": "/^(Resolves|Fixes): [A-Z\\-0-9]+$/"
+            case_insensitive: true
+            multiline: true
+            additional_modifiers: ''
+            
+        phpcsfixer2:
+            allow_risky: true
+            cache_file: ~
+            config: '../_typo3-conventions-checker/src/PhpCsFixerConfiguration.php'
+            
+            using_cache: true
+            verbose: true
+            diff: false
+            triggered_by: ['php']
+            
+        phpmd:
+            ruleset: ['cleancode', 'codesize', 'naming']
+            triggered_by: ['php']
