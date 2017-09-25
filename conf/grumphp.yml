@@ -29,7 +29,7 @@ parameters:
         phpcsfixer2:
             allow_risky: true
             cache_file: ~
-            config: '../_typo3-conventions-checker/src/PhpCsFixerConfiguration.php'
+            config: 'vendor/staempfli/typo3-conventions-checker/conf/PhpCsFixer.php'
             
             using_cache: true
             verbose: true
