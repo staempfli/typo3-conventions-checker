@@ -1,9 +1,10 @@
 {
     "name": "staempfli/typo3-conventions-checker",
     "description": "Checks commit contents and messages for violations of the TYPO3 Coding Guidelines / commit message guidelines",
-    "require": {},
-    "require-dev": {
+    "require": {
         "phpro/grumphp": "*",
-        "friendsofphp/php-cs-fixer": "*"
-    }
+        "friendsofphp/php-cs-fixer": "*",
+        "phpmd/phpmd": "*"
+    },
+    "require-dev": { }
 }
