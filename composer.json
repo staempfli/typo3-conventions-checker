@@ -1,7 +1,17 @@
 {
     "name": "staempfli/typo3-conventions-checker",
-    "description": "Checks commit contents and messages for violations of the TYPO3 Coding Guidelines / commit message guidelines",
+    "description": "Enforces code quality guidelines for TYPO3 CMS projects",
+    "keywords": ["typo3"],
+    "type": "library",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Manuel Glauser",
+            "email": "manuel.glauser@staempfli.com"
+        }
+    ],
     "require": {
+        "php": "^7.0",
         "phpro/grumphp": "*",
         "friendsofphp/php-cs-fixer": "*",
         "phpmd/phpmd": "*"
