@@ -37,5 +37,5 @@ parameters:
             triggered_by: ['php']
             
         phpmd:
-            ruleset: ['cleancode', 'codesize', 'naming']
+            ruleset: ['vendor/staempfli/typo3-conventions-checker/conf/PhpmdRulesets.xml']
             triggered_by: ['php']
