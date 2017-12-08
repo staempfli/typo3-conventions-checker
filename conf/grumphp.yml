@@ -12,6 +12,7 @@ parameters:
                 - "console.log("
                 - "{f:debug"
                 - "<f:debug"
+            triggered_by: ['php', 'html', 'js']
                 
         git_commit_message:
             allow_empty_message: false
