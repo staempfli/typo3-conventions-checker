@@ -12,6 +12,7 @@ parameters:
                 - "console.log("
                 - "{f:debug"
                 - "<f:debug"
+            triggered_by: ['php', 'html', 'js']
                 
         git_commit_message:
             allow_empty_message: false
@@ -37,5 +38,5 @@ parameters:
             triggered_by: ['php']
             
         phpmd:
-            ruleset: ['cleancode', 'codesize', 'naming']
+            ruleset: ['vendor/staempfli/typo3-conventions-checker/conf/PhpmdRulesets.xml']
             triggered_by: ['php']
