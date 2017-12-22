@@ -101,6 +101,45 @@ parameters:
             config: 'your/own/PhpCsFixer/conf.php'
 ```
 
+## Initializing extensions
+Let's say, you maintain an extension 'mynews' and
+of course, you want the code of 'mynews' to comply with some
+coding standards as well. You're working on the main project,
+where 'mynews' is included as a dependency but you'll probably
+introduce changes to 'mynews' while working on the main project.
+But, because 'mynews' is its own git repository, it doesn't get
+checked by GrumPHP if you just initialized GrumPHP on
+your main project as described above.
+```
+- main-typo3-project/
+  - composer.json
+  - web
+    - fileadmin
+    - typo3
+    - typo3conf
+      - ext
+        - mynews <= doesn't get initialized by GrumPHP
+    (...)
+```
+Lucky you! You're just 2 baby steps away from forcing all
+commits to 'mynews' to get checked by GrumPHP.
+1. ADD a grumphp.yml configuration to the root directory
+of your extension, 'mynews' in this case. In there, you can
+reference and possibly override this package's configuration
+the same way as you did for your main repository (see examples above).
+2. In your root composer manifest, run the 'initializeExtensions'
+method via composer scripts. Let's say, after each `composer update`, eh?
+```
+(...)
+"scripts": {
+  "post-update-cmd": [
+    "Staempfli\\Typo3ConventionsChecker\\Grumphp::initializeExtensions",
+  ],
+},
+(...)
+```
+
+
 [1]: https://docs.typo3.org/typo3cms/CodingGuidelinesReference/PhpFileFormatting/GeneralRequirementsForPhpFiles/Index.html
 [2]: https://docs.typo3.org/typo3cms/ContributionWorkflowGuide/GitSetup/CommitMessageFormat.html
 [3]: https://github.com/phpro/grumphp
