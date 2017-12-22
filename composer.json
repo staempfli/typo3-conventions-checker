@@ -16,5 +16,11 @@
         "friendsofphp/php-cs-fixer": "*",
         "phpmd/phpmd": "*"
     },
-    "require-dev": { }
+    "require-dev": { },
+
+    "autoload": {
+        "psr-4": {
+            "Staempfli\\Typo3ConventionsChecker\\": "src/"
+        }
+    }
 }
