@@ -1,6 +1,6 @@
 parameters:
     git_dir: .
-    bin_dir: bin
+    bin_dir: ./vendor/bin
     hide_circumvention_tip: true
     process_timeout: 300
     tasks:
@@ -29,14 +29,7 @@ parameters:
             
         phpcsfixer2:
             allow_risky: true
-            cache_file: ~
             config: 'vendor/staempfli/typo3-conventions-checker/conf/PhpCsFixer.php'
             
-            using_cache: true
-            verbose: true
-            diff: false
-            triggered_by: ['php']
-            
         phpmd:
-            ruleset: ['vendor/staempfli/typo3-conventions-checker/conf/PhpmdRulesets.xml']
-            triggered_by: ['php']
+            ruleset: ['vendor/staempfli/typo3-conventions-checker/conf/PhpMdRulesets.xml']

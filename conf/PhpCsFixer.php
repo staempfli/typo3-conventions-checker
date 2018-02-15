@@ -43,7 +43,7 @@ $typo3CoreCsFixerConfiguration = \PhpCsFixer\Config::create()
 // Skim through any file in 'typo3conf/ext' that may have been modified.
 $finder = PhpCsFixer\Finder::create()
     ->exclude('node_modules')
-    ->in(getcwd() . '/web/typo3conf/ext/');
+    ->in(getcwd());
 $typo3CoreCsFixerConfiguration->setFinder($finder);
 
 return $typo3CoreCsFixerConfiguration;
