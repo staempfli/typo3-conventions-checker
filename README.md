@@ -141,7 +141,7 @@ method via composer scripts. Let's say, after each `composer update`, eh?
 (...)
 "scripts": {
   "post-update-cmd": [
-    "Staempfli\\Typo3ConventionsChecker\\Grumphp::initializeExtensions",
+    "Staempfli\\Typo3ConventionsChecker\\Composer\\Grumphp::initializeExtensions",
   ],
 },
 (...)
