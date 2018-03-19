@@ -67,9 +67,9 @@ The best way to hook in for any customizations is probably
 via [GrumPHP][3] configuration in your project root directory.
 
 **Important notice on inheritance**: To my knowledge, it is not possible
-to recursively inherit task settings, meaning: you override one
+to recursively inherit task settings, meaning: **you override one
 property/setting of a task (see example below), you need to re-define all
-tasks and their settings. [See the grumphp configuration provided
+tasks and their settings**. [See the grumphp configuration provided
 for extensions](./conf/grumphp-extensions.yml).
 
 
@@ -90,6 +90,8 @@ parameters:
     tasks:                
         git_commit_message:
             max_subject_width: 42
+
+        (other tasks' configuration with or without customization)
 ```
 
 
@@ -104,6 +106,8 @@ parameters:
     tasks:
         phpcsfixer2:
             config: 'your/own/PhpCsFixer/conf.php'
+
+        (other tasks' configuration with or without customization)
 ```
 
 ## Initializing extensions
