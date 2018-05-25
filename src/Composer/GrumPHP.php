@@ -49,7 +49,7 @@ class GrumPHP {
             // Initialize extension
             $event->getIO()->write(sprintf('Initializing grumphp for extension "%s"...', $extensionDirectoryAbsolute));
             $initProcess = new \Symfony\Component\Process\Process(
-                $grumphpExecutable . ' git:init',
+                '"' . $grumphpExecutable . '" git:init',
                 $extensionDirectoryAbsolute
             );
             $initProcess->run(function ($status, $content) {
