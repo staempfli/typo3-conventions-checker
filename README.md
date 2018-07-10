@@ -10,7 +10,7 @@ TYPO3 core contributions and we're not usually committing to the
 core repository in our projects, eh.
 
 This works via Git hooks, so every time you type 'git commit ...',
-the configured GumPHP tasks get fired.
+the configured GrumPHP tasks get fired.
 
 The package itself doesn't do much, honestly. :) It provides some
 configuration and requires some dependencies to get your
@@ -43,12 +43,18 @@ this directory's name). Something along the lines of:
     (...)
 ```
 
-- Create a grumphp configuration file (`grumphp.yml`) in your
-project root and referece this repository's configuration:
+- Reference the GrumPHP configuration file (`grumphp.yml`) in the
+"extra" section of your root composer manifest:
 ```yaml
-imports:
-    - { resource: vendor/staempfli/typo3-conventions-checker/conf/grumphp.yml }
+(...)
+  "extra": {
+    "grumphp": {
+      "config-default-path": "vendor/staempfli/typo3-conventions-checker/conf/grumphp.yml"
+    }
+  }
 ```
+(Alternatively, you can create a custom grumphp.yml file in your git root
+directory, this will work as well).
 - Require this package via composer `composer require --dev "staempfli/typo3-conventions-checker"`
 - Commit changes to your project. All checks will be run automagically on commit.
 
@@ -62,9 +68,11 @@ Per default, this package uses
   'Releases' and/or 'Change-Id' requirements
 - ([see full configuration in /conf/grumphp.yml](./conf/grumphp.yml))
 
-### Override configuration
-The best way to hook in for any customizations is probably
-via [GrumPHP][3] configuration in your project root directory.
+### Override (i.e. 'extend') configuration
+For this to work, you need to create your own grumphp.yml in your
+git root directory according to the [GrumPHP][3] configuration. In there,
+you may reference this package's grumphp configuration and override
+the settings.
 
 **Important notice on inheritance**: To my knowledge, it is not possible
 to recursively inherit task settings, meaning: **you override one
@@ -132,16 +140,31 @@ your main project as described above.
 ```
 Lucky you! You're just 2 baby steps away from forcing all
 commits to 'mynews' to get checked by GrumPHP.
-1. ADD a grumphp.yml configuration to the root directory referencing
-the provided `grumphp-extensions.yml` file:
+
+1. Add a reference to a grumphp.yml configuration via composer manifest of
+the 'mynews' extension or create a custom grumphp.yml in the extension's
+root directory. Note that this package already provides a
+[dedicated grumphp configuration](./conf/grumphp-extensions.yml)
+that respects the extension directory nesting.
+
+Via 'extra' section of the composer manifest of the extension:
+```json
+  (...)
+    "extra": {
+        "grumphp": {
+            "config-default-path": "./../../../../vendor/staempfli/typo3-conventions-checker/conf/grumphp-extensions.yml"
+        }
+    }
 ```
+Via grumphp.yml in the root directory of the extension:
+```yaml
 imports:
     - { resource: ./../../../../vendor/staempfli/typo3-conventions-checker/conf/grumphp-extensions.yml }
 ```
 
 2. In your root composer manifest, run the 'initializeExtensions'
 method via composer scripts. Let's say, after each `composer update`, eh?
-```
+```json
 (...)
 "scripts": {
   "post-update-cmd": [
